@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de despesas</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <div id="create-container">
+        <form id="manage-adds">
+            <input type="text" id="nome" name="nome" placeholder="Digite o produto" required>
+
+            <input type="number" id="quantidade" name="quantidade" placeholder="Quantidade">
+
+            <input type="number" id="preco" name="preco" placeholder="Valor" required>
+                    
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+    <div id="manage-results">
+        <h1 id="manage-itens">Suas despesas</h1>
+        <ul id="products"></ul>
+    </div>
+    <script src="scripts/script.js"></script>
+</body>
+</html>
