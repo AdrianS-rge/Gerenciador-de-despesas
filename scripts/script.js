@@ -73,6 +73,27 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
 
+                const editButton = document.createElement('button');
+                editButton.textContent = 'editar'
+                editButton.addEventListener('click', () => {
+                    const novoNome = prompt('Nome', product.nome);
+                    const novaQuantidade = prompt('Quantidade', product.quantidade)
+                    const novoPreco = prompt('Preco', product.preco)
+
+                    if (novoNome && novaQuantidade && novoPreco) {
+                        fetch(`http://localhost:3000/produtos/${product.id}`, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ nome: novoNome, quantidade: parseInt(novaQuantidade), preco: parseFloat(novoPreco) })
+                        }).then(() => {
+                            fetchProducts();
+                        }).catch(err => console.error('Erro ao modificar produto', err));
+                    }
+                })
+
+                listProducts.appendChild(editButton)
                 listProducts.appendChild(removeButton);
                 products.appendChild(listProducts);
                 

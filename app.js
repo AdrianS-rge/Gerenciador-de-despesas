@@ -70,6 +70,27 @@ app.delete('/produtos/:id', async (req, res) => {
     }
 });
 
+app.put('/produtos/:id', async (req, res) => {
+    try {
+        const produtoId = req.params.id;
+        const { nome, quantidade, preco } = req.body;
+        await Produto.sync();
+        const produto = await Produto.findByPk(produtoId); 
+        if(produto) {
+            produto.nome = nome;
+            produto.quantidade = quantidade;
+            produto.preco = preco;
+            await produto.save();
+            res.json(produto);
+        } else {
+        res.status(404).json({ erro: 'Produto não encontrado' });
+    } 
+    } catch (err) {
+        console.error("Erro ao atualizar produto", err);
+        res.status(500).json({ erro: 'Erro interno no servidor'})
+    }
+})
+
 const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Servidor conectado com sucesso na porta ${PORT}`);
