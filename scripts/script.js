@@ -39,7 +39,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const products = document.getElementById('products');
             products.innerHTML = '';
 
+            let totalValue = 0;
+
             data.forEach(product => {
+                totalValue += product.preco // * product.quantidade
+
                 const listProducts = document.createElement('li');
 
                 const nomeElement = document.createElement('span');
@@ -92,6 +96,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         }).catch(err => console.error('Erro ao modificar produto', err));
                     }
                 })
+
+                const valorTotal = document.getElementById("valor-total")
+                valorTotal.textContent = `Valor total: R$${totalValue.toFixed(2)}`;
 
                 listProducts.appendChild(editButton)
                 listProducts.appendChild(removeButton);
