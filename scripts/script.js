@@ -9,6 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const quantidade = formData.get('quantidade');
         const preco = formData.get('preco');
 
+        if(!nome || !quantidade || !preco) {
+            alert("Todos os valores sao obrigatorios!")
+            return
+        }
         try {
             const response = await fetch('http://localhost:3000/produtos', {
                 method: 'POST',
